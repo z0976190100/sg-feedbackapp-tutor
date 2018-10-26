@@ -60,6 +60,7 @@ class SurveyForm extends Component {
     };
 }
 
+// redux-form consumes this one automaticaly
 function validate(values) {
     const errors = {};
 
