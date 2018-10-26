@@ -4,6 +4,7 @@ import {reduxForm, Field} from 'redux-form';
 import {Link} from 'react-router-dom';
 import SurveyField from './SurveyField';
 
+// TODO: thy shalt rip off those GREEEN letters, think about variables instead.
 const FIELDS = [
     {
         label: 'Survey Title',
@@ -21,7 +22,7 @@ const FIELDS = [
         label: 'Recipients List',
         name: 'recipients'
     }
-]
+];
 
 class SurveyForm extends Component {
     renderFields() {
