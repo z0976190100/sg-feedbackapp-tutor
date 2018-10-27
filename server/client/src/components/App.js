@@ -9,8 +9,6 @@ import {connect} from 'react-redux';
 import * as actions from '../actions';
 
 
-const Survey = () =>
-    <h1>survey</h1>;
 const Thanks = () =>
     <h1>payment is done!</h1>;
 

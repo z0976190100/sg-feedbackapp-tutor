@@ -4,8 +4,8 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/k');
-require('./model/User');
-require('./model/Survey');
+require('./models/User');
+require('./models/Survey');
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI, {useNewUrlParser: true}); // second attr is antideprecation recommendation of Mongoose
