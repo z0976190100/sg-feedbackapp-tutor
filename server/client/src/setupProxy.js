@@ -7,7 +7,7 @@ module.exports = function (app) {
             '/api/logout',
             '/api/current_user',
             '/api/stripe',
-            '/api/surveys'
+            '/api/units'
         ],
         {
             target: 'http://localhost:5000/'

@@ -9,7 +9,7 @@ import reducers from './reducers';
 import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
-import {paths} from './assets/paths/paths';
+import uri from './assets/uri/URI';
 
 // surveyRoutes chrome console testing:
 import axios from 'axios';
@@ -19,7 +19,7 @@ const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
     <Provider store={store} >
-        <App paths={paths}/>
+        <App paths={uri} />
     </Provider>,
     document.querySelector('#root')
 );

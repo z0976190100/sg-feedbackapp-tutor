@@ -6,8 +6,29 @@ const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 
 const Survey = mongoose.model('surveys');
 
-// TODO: routeRequirments() instead requireLogin, requireCredits and etc.
+// TODO: routeRequirements() instead requireLogin, requireCredits and etc.
+
+
 module.exports = app => {
+
+    app.get(
+        '/api/surveys', requireLogin, async (req, res) => {
+
+            const surveys = await Survey.find(
+                {
+                    _user: req.user.id
+                }
+            )
+                .select(
+                    {
+                        recipients: false
+                    }
+                );
+
+            res.send(surveys)
+        }
+    );
+
     app.post(
         '/api/surveys', requireLogin, requireCredits, async (req, res) => {
 
@@ -26,18 +47,16 @@ module.exports = app => {
                 }
             );
 
-            console.log(survey);
-            console.log(surveyTemplate(survey));
             const mailer = new Mailer(survey, surveyTemplate(survey));
 
             try {
-                await mailer.send();
+                //await mailer.send();
                 await survey.save();
-               // req.user.credits -= 1;
+                // req.user.credits -= 1;
                 const user = await req.user.save();
-                console.log(res);
                 res.send(user);
             } catch (e) {
+                console.log(e);
                 res.status(422).send(e);
             }
         });

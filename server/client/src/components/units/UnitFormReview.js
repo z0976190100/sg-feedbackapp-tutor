@@ -1,10 +1,16 @@
 import React from 'react';
-import {Field} from 'redux-form';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
-import {saveForm} from "../../actions";
+import {withRouter} from 'react-router-dom';
 
-const SurveyFormReview = ({onCancel, formValues, saveForm}) => {
+const UnitFormReview = (
+    {
+        onCancel,
+        formValues,
+        saveForm,
+        history
+    }
+) => {
 
     return (
         <div>
@@ -17,9 +23,9 @@ const SurveyFormReview = ({onCancel, formValues, saveForm}) => {
                     <i className="material-icons left">chevron_left</i>
                     Back
                 </button>
-                <button onClick={() => saveForm(formValues)} className="btn-flat teal right white-text">
+                <button onClick={() => {console.log(formValues); saveForm(formValues, history);}} className="btn-flat teal right white-text">
                     Save
-                    <i className="material-icons right">done-all</i>
+                    <i className="material-icons right">done_all</i>
                 </button>
             </div>
         </div>
@@ -29,9 +35,9 @@ const SurveyFormReview = ({onCancel, formValues, saveForm}) => {
 function mapStateToProps(state) {
     return (
         {
-            formValues: state.form.surveyForm.values
+            formValues: state.form.unitForm.values
         }
     );
 }
 
-export default connect(mapStateToProps, actions)(SurveyFormReview);
+export default connect(mapStateToProps, actions)(withRouter(UnitFormReview));

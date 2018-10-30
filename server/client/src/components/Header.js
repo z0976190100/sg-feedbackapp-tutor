@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import uri from '../assets/uri/URI';
 
 import Pay from './Pay';
 
@@ -14,9 +15,9 @@ class Header extends Component {
 
             case false:
                 return (
-                    <li className="z-header-items">
+                    <li className="z-header-item">
                         <button className="btn">
-                            <a href="/auth/google">LogIn with Google</a>
+                            <a href={uri.goggleOAuth}>LogIn with Google</a>
                         </button>
                     </li>
                 );
@@ -24,16 +25,16 @@ class Header extends Component {
             default:
                 return this.props.auth ? (
                     <div>
-                        <li className="z-header-items">
+                       {/* <li className="z-header-items">
                             <Pay credits={this.props.auth.credits}/>
-                        </li>
+                        </li>*/}
                         {/*<li className="z-header-items">
                             Credits:
                         </li>*/}
-                        <li className="z-header-items">
-                                <a href="/api/logout">Logout</a>
+                        <li className="z-header-item">
+                                <a href={uri.logout}>Logout</a>
                         </li>
-                        <li className="z-header-items">
+                        <li className="z-header-item">
                             <a href="#">Hallo, <strong>{JSON.parse(this.props.auth.name)['familyName']}</strong></a>
                         </li>
                     </div>
@@ -47,12 +48,12 @@ class Header extends Component {
             <nav>
                 <div className="nav-wrapper">
                     <Link
-                        to={this.props.auth ? '/surveys' : '/'}
-                        className="left brand-logo z-header-items"
+                        to={this.props.auth ? uri.units : '/'}
+                        className="left brand-logo logo z-header-item"
                     >
                         Manic Mechanic
                     </Link>
-                    <div className="container">
+                    <div className="container z-header-container right">
                         <ul className="right">
                             {this.renderContentHelper()}
                         </ul>

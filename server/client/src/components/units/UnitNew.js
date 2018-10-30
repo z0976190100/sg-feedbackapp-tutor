@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import SurveyForm from "./SurveyForm";
-import SurveyFormReview from "./SurveyFormReview";
+import AddUnitForm from "./AddUnitForm";
+import UnitFormReview from "./UnitFormReview";
 import {reduxForm} from 'redux-form';
 
 
-class SurveyNew extends Component {
+class UnitNew extends Component {
     state =
         {
             showFormReview: false
@@ -13,7 +13,7 @@ class SurveyNew extends Component {
     renderContent() {
         if (this.state.showFormReview) {
             return (
-                <SurveyFormReview
+                <UnitFormReview
                     onCancel={() => {
                         this.setState(
                             {
@@ -26,8 +26,8 @@ class SurveyNew extends Component {
             );
         } else {
             return (
-                <SurveyForm
-                    onSurveySubmit={() => {
+                <AddUnitForm
+                    onUnitSubmit={() => {
                         this.setState(
                             {
                                 showFormReview: true
@@ -42,11 +42,13 @@ class SurveyNew extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div>
-                    <h4 className="right-align" title="Adding new unit">Register new Mashine Unit</h4>
+            <div>
+                <div className="container z-container-title">
+                    <h4 className="right" title="Adding new unit">Register new Mashine Unit</h4>
                 </div>
-                {this.renderContent()}
+                <div className="container">
+                    {this.renderContent()}
+                </div>
             </div>
         );
     };
@@ -54,6 +56,6 @@ class SurveyNew extends Component {
 
 export default reduxForm(
     {
-        form: 'surveyForm'
+        form: 'unitForm'
     }
-)(SurveyNew);
+)(UnitNew);

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {FETCH_USER} from './types';
+import {FETCH_UNITS} from './types';
 
 // this one can be transformed to fit ES6 syntax (see fetchUserAction())
 // export const fetchUserAuld = () => {
@@ -40,13 +41,33 @@ export const handleToken = (token) => async dispatch => {
 
 };
 
-export const saveForm = values => {
+export const saveForm = (values, history) => async dispatch => {
 
-    return (
+    const res = await axios.post('/api/surveys', values);
+
+    history.push('/surveys');
+
+    dispatch(
         {
-            type: 'save_form'
+            type: FETCH_USER,
+            payload: res.data
         }
     );
+
+};
+
+export const fetchSurveys = () => async dispatch => {
+
+    const res = await axios.get('/api/surveys');
+
+    dispatch(
+        {
+            type: FETCH_UNITS,
+            payload: res.data
+
+        }
+    );
+
 };
 
 
