@@ -15,7 +15,7 @@ class AddUnitForm extends Component {
         return _.map(FIELDS, ({label, name}) => {
             return (
 
-                <div className="col s6">
+                <div key={name} className="col s6">
                     <Field
                         key={name}
                         component={CustomFormField}

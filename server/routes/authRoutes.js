@@ -13,7 +13,9 @@ module.exports = (app) => {
         '/auth/google/callback',
         passport.authenticate('google'),
         (req, res) => {
-            res.redirect('/surveys');
+            console.log("< authRoutes.js:16 > IN get('/auth/google/callback') --> response = \n");
+            console.log(res);
+            res.redirect('/units');
         }
     );
 
@@ -27,6 +29,8 @@ module.exports = (app) => {
     app.get(
         '/api/current_user', (req, res) => {
           // res.send(req.session);
+            console.log("< authRoutes.js:31 > IN get('/api/current_user') --> response.data = \n");
+            console.log(req.user);
             res.send(req.user);
         })
 };
